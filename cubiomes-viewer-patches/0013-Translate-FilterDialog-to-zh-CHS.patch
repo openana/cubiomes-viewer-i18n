@@ -1,0 +1,468 @@
+From 0a87fdfde06d9a715aea8849c82f4fda888768b4 Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Tue, 11 Jan 2022 16:14:08 +0800
+Subject: [PATCH] Translate FilterDialog to zh-CHS
+
+
+diff --git a/src/filterdialog.cpp b/src/filterdialog.cpp
+index f38d0b8..c4ed905 100644
+--- a/src/filterdialog.cpp
++++ b/src/filterdialog.cpp
+@@ -61,9 +61,9 @@ FilterDialog::FilterDialog(FormConditions *parent, Config *config, int mcversion
+ 
+     textDescription = new QTextEdit(this);
+     textDescription->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+-    ui->collapseDescription->init("Description", textDescription, true);
++    ui->collapseDescription->init("介绍", textDescription, true);
+ 
+-    QString mcs = "MC ";
++    QString mcs = "Minecraft ";
+     mcs += (mc2str(mc) ? mc2str(mc) : "?");
+     ui->labelMC->setText(mcs);
+ 
+@@ -208,22 +208,22 @@ FilterDialog::FilterDialog(FormConditions *parent, Config *config, int mcversion
+     SETUP_TEMPCAT_SPINBOX(Special+Lush);
+     SETUP_TEMPCAT_SPINBOX(Special+Cold);
+ 
+-    addVariant("plains_fountain_01", plains, 0);
+-    addVariant("plains_meeting_point_1", plains, 1);
+-    addVariant("plains_meeting_point_2", plains, 2);
+-    addVariant("plains_meeting_point_3", plains, 3);
+-    addVariant("desert_meeting_point_1", desert, 1);
+-    addVariant("desert_meeting_point_2", desert, 2);
+-    addVariant("desert_meeting_point_3", desert, 3);
+-    addVariant("savanna_meeting_point_1", savanna, 1);
+-    addVariant("savanna_meeting_point_2", savanna, 2);
+-    addVariant("savanna_meeting_point_3", savanna, 3);
+-    addVariant("savanna_meeting_point_4", savanna, 4);
+-    addVariant("taiga_meeting_point_1", taiga, 1);
+-    addVariant("taiga_meeting_point_2", taiga, 2);
+-    addVariant("snowy_meeting_point_1", snowy_tundra, 1);
+-    addVariant("snowy_meeting_point_2", snowy_tundra, 2);
+-    addVariant("snowy_meeting_point_3", snowy_tundra, 3);
++    addVariant("平原喷泉 0", plains, 0);
++    addVariant("平原交汇点 1", plains, 1);
++    addVariant("平原交汇点 2", plains, 2);
++    addVariant("平原交汇点 3", plains, 3);
++    addVariant("沙漠交汇点 1", desert, 1);
++    addVariant("沙漠交汇点 2", desert, 2);
++    addVariant("沙漠交汇点 3", desert, 3);
++    addVariant("热带草原交汇点 1", savanna, 1);
++    addVariant("热带草原交汇点 2", savanna, 2);
++    addVariant("热带草原交汇点 3", savanna, 3);
++    addVariant("热带草原交汇点 4", savanna, 4);
++    addVariant("针叶林交汇点 1", taiga, 1);
++    addVariant("针叶林交汇点 2", taiga, 2);
++    addVariant("雪原交汇点 1", snowy_tundra, 1);
++    addVariant("雪原交汇点 2", snowy_tundra, 2);
++    addVariant("雪原交汇点 3", snowy_tundra, 3);
+ 
+     ui->scrollBiomes->setStyleSheet(
+             "QCheckBox::indicator:unchecked     { image: url(:/icons/check0.png); }\n"
+@@ -432,17 +432,17 @@ void FilterDialog::updateMode()
+ 
+     if (ft.step > 1)
+     {
+-        loc = QString::asprintf("Location (coordinates are multiplied by x%d)", ft.step);
+-        areatip = QString::asprintf("From floor(-[S] / 2) x%d to floor([S] / 2) x%d on both axes (inclusive)", ft.step, ft.step);
+-        lowtip = QString::asprintf("Lower bound x%d (inclusive)", ft.step);
+-        uptip = QString::asprintf("Upper bound x%d (inclusive)", ft.step);
++        loc = QString::asprintf("位置 (坐标倍率x%d)", ft.step);
++        areatip = QString::asprintf("From floor(-[S] / 2) x%d to floor([S] / 2) x%d on both axes (包含)", ft.step, ft.step);
++        lowtip = QString::asprintf("最小值 x%d (包含)", ft.step);
++        uptip = QString::asprintf("最大值 x%d (包含)", ft.step);
+     }
+     else
+     {
+-        loc = "Location";
+-        areatip = "From floor(-[S] / 2) to floor([S] / 2) on both axes (inclusive)";
+-        lowtip = QString::asprintf("Lower bound (inclusive)");
+-        uptip = QString::asprintf("Upper bound (inclusive)");
++        loc = "位置";
++        areatip = "From floor(-[S] / 2) to floor([S] / 2) on both axes (包含)";
++        lowtip = QString::asprintf("最小值 (包含)");
++        uptip = QString::asprintf("最大值 (包含)");
+     }
+     ui->groupBoxPosition->setTitle(loc);
+     ui->labelSquareArea->setToolTip(areatip);
+@@ -754,7 +754,7 @@ void FilterDialog::on_comboBoxCat_currentIndexChanged(int idx)
+     ui->comboBoxType->clear();
+ 
+     int slot = 0;
+-    ui->comboBoxType->insertItem(slot, "Select filter", QVariant::fromValue((int)F_SELECT));
++    ui->comboBoxType->insertItem(slot, "选择过滤器", QVariant::fromValue((int)F_SELECT));
+ 
+     const FilterInfo *ft_list[FILTER_MAX] = {};
+     const FilterInfo *ft;
+diff --git a/src/filterdialog.h b/src/filterdialog.h
+index 1f7e67b..8f8327c 100644
+--- a/src/filterdialog.h
++++ b/src/filterdialog.h
+@@ -29,18 +29,18 @@ public:
+     virtual ~SpinExclude() {}
+     virtual int valueFromText(const QString &text) const override
+     {
+-        if (text == "0 (ignore)")
++        if (text == "0 (忽略)")
+             return 0;
+-        if (text == "-1 (exclude)")
++        if (text == "-1 (排除)")
+             return -1;
+         return QSpinBox::valueFromText(text);
+     }
+     virtual QString textFromValue(int value) const override
+     {
+         if (value == 0)
+-            return "0 (ignore)";
++            return "0 (忽略)";
+         if (value == -1)
+-            return "-1 (exclude)";
++            return "-1 (排除)";
+         return QSpinBox::textFromValue(value);
+     }
+ 
+diff --git a/src/filterdialog.ui b/src/filterdialog.ui
+index ffaef50..605f692 100644
+--- a/src/filterdialog.ui
++++ b/src/filterdialog.ui
+@@ -11,7 +11,7 @@
+    </rect>
+   </property>
+   <property name="windowTitle">
+-   <string>New Filter</string>
++   <string>新建过滤器</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+@@ -19,7 +19,7 @@
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelMC">
+        <property name="text">
+-        <string>MC: 1.X</string>
++        <string>Minecraft: 1.X</string>
+        </property>
+       </widget>
+      </item>
+@@ -42,12 +42,12 @@
+        </property>
+        <item>
+         <property name="text">
+-         <string>Select category</string>
++         <string>选择类别</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+-         <string>Algorithm helpers</string>
++         <string>算法辅助点</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -56,7 +56,7 @@
+        </item>
+        <item>
+         <property name="text">
+-         <string>Quad-structure</string>
++         <string>四联结构</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -65,7 +65,7 @@
+        </item>
+        <item>
+         <property name="text">
+-         <string>Structures</string>
++         <string>结构</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -74,7 +74,7 @@
+        </item>
+        <item>
+         <property name="text">
+-         <string>Biome filter</string>
++         <string>主世界生物群系</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -83,7 +83,7 @@
+        </item>
+        <item>
+         <property name="text">
+-         <string>Nether biomes</string>
++         <string>下界生物群系</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -92,7 +92,7 @@
+        </item>
+        <item>
+         <property name="text">
+-         <string>End biomes</string>
++         <string>末地生物群系</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -101,7 +101,7 @@
+        </item>
+        <item>
+         <property name="text">
+-         <string>Others</string>
++         <string>其他</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+@@ -135,7 +135,7 @@
+        </property>
+        <item>
+         <property name="text">
+-         <string>Select filter</string>
++         <string>选择过滤器</string>
+         </property>
+        </item>
+       </widget>
+@@ -143,7 +143,7 @@
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelFilterType">
+        <property name="text">
+-        <string>Filter type:</string>
++        <string>过滤器类型:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+@@ -163,13 +163,13 @@
+        <item>
+         <widget class="QGroupBox" name="groupBoxPosition">
+          <property name="title">
+-          <string>Location</string>
++          <string>位置</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="4" column="0">
+            <widget class="QLabel" name="labelRelative">
+             <property name="text">
+-             <string>Location is relative to:</string>
++             <string>中心位置相对于:</string>
+             </property>
+            </widget>
+           </item>
+@@ -187,7 +187,7 @@
+            <widget class="QComboBox" name="comboBoxRelative">
+             <item>
+              <property name="text">
+-              <string>World origin</string>
++              <string>世界原点</string>
+              </property>
+             </item>
+            </widget>
+@@ -205,7 +205,7 @@
+              <string>Specify manual rectangle rather than square</string>
+             </property>
+             <property name="text">
+-             <string>Custom area</string>
++             <string>自定义区域</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+@@ -215,14 +215,14 @@
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelSpinBox">
+             <property name="text">
+-             <string>Instances within area:</string>
++             <string>区域内的实例数:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelSquareArea">
+             <property name="text">
+-             <string>Within centred square of side:</string>
++             <string>设置正方形区域的边长:</string>
+             </property>
+            </widget>
+           </item>
+@@ -231,7 +231,7 @@
+             <item>
+              <widget class="QLabel" name="labelX1">
+               <property name="toolTip">
+-               <string>Lower bound (inclusive)</string>
++               <string>最小值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>X&lt;sub&gt;1&lt;/sub&gt;:</string>
+@@ -241,7 +241,7 @@
+             <item>
+              <widget class="QLineEdit" name="lineEditX1">
+               <property name="toolTip">
+-               <string>Lower bound (inclusive)</string>
++               <string>最小值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>0</string>
+@@ -251,7 +251,7 @@
+             <item>
+              <widget class="QLabel" name="labelZ1">
+               <property name="toolTip">
+-               <string>Lower bound (inclusive)</string>
++               <string>最小值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>Z&lt;sub&gt;1&lt;/sub&gt;:</string>
+@@ -261,7 +261,7 @@
+             <item>
+              <widget class="QLineEdit" name="lineEditZ1">
+               <property name="toolTip">
+-               <string>Lower bound (inclusive)</string>
++               <string>最小值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>0</string>
+@@ -284,7 +284,7 @@
+             <item>
+              <widget class="QLabel" name="labelX2">
+               <property name="toolTip">
+-               <string>Upper bound (inclusive)</string>
++               <string>最大值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>X&lt;sub&gt;2&lt;/sub&gt;:</string>
+@@ -294,7 +294,7 @@
+             <item>
+              <widget class="QLineEdit" name="lineEditX2">
+               <property name="toolTip">
+-               <string>Upper bound (inclusive)</string>
++               <string>最大值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>0</string>
+@@ -304,7 +304,7 @@
+             <item>
+              <widget class="QLabel" name="labelZ2">
+               <property name="toolTip">
+-               <string>Upper bound (inclusive)</string>
++               <string>最大值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>Z&lt;sub&gt;2&lt;/sub&gt;:</string>
+@@ -314,7 +314,7 @@
+             <item>
+              <widget class="QLineEdit" name="lineEditZ2">
+               <property name="toolTip">
+-               <string>Upper bound (inclusive)</string>
++               <string>最大值 (包含)</string>
+               </property>
+               <property name="text">
+                <string>0</string>
+@@ -336,7 +336,7 @@
+          </property>
+          <widget class="QWidget" name="tabBiomes">
+           <attribute name="title">
+-           <string>Biomes</string>
++           <string>生物群系</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="3">
+@@ -355,14 +355,14 @@
+               <string>Enables optimizations that trade accuracy for speed</string>
+              </property>
+              <property name="text">
+-              <string>Approximate</string>
++              <string>近似搜索</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLabel" name="labelY">
+              <property name="text">
+-              <string>Sample at height (Y):</string>
++              <string>采样高度 (Y):</string>
+              </property>
+             </widget>
+            </item>
+@@ -396,21 +396,21 @@
+              <item>
+               <widget class="QPushButton" name="buttonUncheck">
+                <property name="text">
+-                <string>uncheck all</string>
++                <string>清空全部</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonInclude">
+                <property name="text">
+-                <string>include all</string>
++                <string>全部包含</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonExclude">
+                <property name="text">
+-                <string>exclude all</string>
++                <string>全部排除</string>
+                </property>
+               </widget>
+              </item>
+@@ -433,13 +433,13 @@
+          </widget>
+          <widget class="QWidget" name="tabTemps">
+           <attribute name="title">
+-           <string>Temperature Categories</string>
++           <string>温度类型</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+-              <string>Select how many entries of each temperature category are required.</string>
++              <string>选择每个温度类型下需要的生物群系数目。</string>
+              </property>
+             </widget>
+            </item>
+@@ -463,13 +463,13 @@
+          </widget>
+          <widget class="QWidget" name="tabVariants">
+           <attribute name="title">
+-           <string>Variant</string>
++           <string>结构变体</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="checkAbandoned">
+              <property name="text">
+-              <string>Abandoned</string>
++              <string>包含废弃结构</string>
+              </property>
+             </widget>
+            </item>
+@@ -479,7 +479,7 @@
+               <string>Allow only structures that start with one of the selected pieces</string>
+              </property>
+              <property name="text">
+-              <string>Filter starting piece</string>
++              <string>仅搜索特定结构</string>
+              </property>
+             </widget>
+            </item>
+@@ -531,7 +531,7 @@
+      <item>
+       <widget class="QPushButton" name="buttonCancel">
+        <property name="text">
+-        <string>Cancel</string>
++        <string>取消</string>
+        </property>
+        <property name="icon">
+         <iconset theme="dialog-cancel">
+@@ -543,7 +543,7 @@
+      <item>
+       <widget class="QPushButton" name="buttonOk">
+        <property name="text">
+-        <string>Ok</string>
++        <string>确定</string>
+        </property>
+        <property name="icon">
+         <iconset theme="dialog-ok">
+-- 
+2.25.1
+
