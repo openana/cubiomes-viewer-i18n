@@ -40,7 +40,7 @@ index 899d40e..37bff81 100644
 +    case Monument:          return "海底神殿";
 +    case Mansion:           return "林地府邸";
 +    case Outpost:           return "掠夺者前哨站";
-+    case Ruined_Portal:     return "废弃传送门";
++    case Ruined_Portal:     return "废弃传送门 (主世界)";
 +    case Ruined_Portal_N:   return "废弃传送门 (下界)";
 +    case Treasure:          return "埋藏的宝藏";
 +    case Mineshaft:         return "废弃矿井";
