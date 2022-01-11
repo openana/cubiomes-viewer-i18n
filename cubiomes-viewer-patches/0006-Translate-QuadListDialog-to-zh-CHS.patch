@@ -1,0 +1,178 @@
+From 91a58fcdadb5faa2fc77a0be99b59845d708c23c Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Tue, 21 Dec 2021 00:07:50 +0800
+Subject: [PATCH] Translate QuadListDialog to zh-CHS
+
+
+diff --git a/src/quadlistdialog.cpp b/src/quadlistdialog.cpp
+index d9b4f84..0f86ee1 100644
+--- a/src/quadlistdialog.cpp
++++ b/src/quadlistdialog.cpp
+@@ -157,13 +157,13 @@ void QuadListDialog::refresh()
+     ui->listQuadStruct->sortByColumn(1, Qt::AscendingOrder);
+ 
+     if (qhn == 0 && qmn == 0)
+-        ui->labelMsg->setText("World contains no quad-structures.");
++        ui->labelMsg->setText("世界不包含任何四连结构.");
+     else if (qhn && qmn)
+-        ui->labelMsg->setText(QString::asprintf("World contains %d quad-hut%s and %d quad-monument%s.", qhn, qhn==1?"":"s", qmn, qmn==1?"":"s"));
++        ui->labelMsg->setText(QString::asprintf("世界包含 %d 个四联女巫小屋和 %d 个四联海底神殿.", qhn, qmn));
+     else if (qhn)
+-        ui->labelMsg->setText(QString::asprintf("World contains %d quad-hut%s.", qhn, qhn==1?"":"s"));
++        ui->labelMsg->setText(QString::asprintf("世界包含 %d 个四联女巫小屋.", qhn));
+     else if (qmn)
+-        ui->labelMsg->setText(QString::asprintf("World contains %d quad-monument%s.", qmn, qmn==1?"":"s"));
++        ui->labelMsg->setText(QString::asprintf("世界包含 %d 个四联海底神殿.", qmn));
+ }
+ 
+ void QuadListDialog::on_buttonGo_clicked()
+@@ -174,7 +174,7 @@ void QuadListDialog::on_buttonGo_clicked()
+ void QuadListDialog::on_listQuadStruct_customContextMenuRequested(const QPoint &pos)
+ {
+     QMenu menu(this);
+-    menu.addAction("Show in map viewer", this, &QuadListDialog::gotoSwampHut);
++    menu.addAction("在地图视图中显示", this, &QuadListDialog::gotoSwampHut);
+     menu.exec(ui->listQuadStruct->mapToGlobal(pos));
+ }
+ 
+diff --git a/src/quadlistdialog.ui b/src/quadlistdialog.ui
+index f8979ac..ff3ef41 100644
+--- a/src/quadlistdialog.ui
++++ b/src/quadlistdialog.ui
+@@ -11,7 +11,7 @@
+    </rect>
+   </property>
+   <property name="windowTitle">
+-   <string>Quad-Structure Scan</string>
++   <string>扫描四联结构</string>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="../icons.qrc">
+@@ -21,7 +21,7 @@
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="title">
+-      <string>Quad-Structures</string>
++      <string>四联结构</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+@@ -57,10 +57,10 @@
+         </attribute>
+         <column>
+          <property name="text">
+-          <string>Structure</string>
++          <string>结构</string>
+          </property>
+          <property name="toolTip">
+-          <string>type of quad-structure</string>
++          <string>四联结构类型</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignLeft|AlignVCenter</set>
+@@ -68,10 +68,10 @@
+         </column>
+         <column>
+          <property name="text">
+-          <string>Distance</string>
++          <string>距离</string>
+          </property>
+          <property name="toolTip">
+-          <string>distance to origin</string>
++          <string>到原点的距离</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignLeft|AlignVCenter</set>
+@@ -79,10 +79,10 @@
+         </column>
+         <column>
+          <property name="text">
+-          <string>Optimal centre</string>
++          <string>结构中心</string>
+          </property>
+          <property name="toolTip">
+-          <string>optimal AFK location</string>
++          <string>最优 AFK 挂机位置</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignLeft|AlignVCenter</set>
+@@ -90,7 +90,7 @@
+         </column>
+         <column>
+          <property name="text">
+-          <string>Enclosing range</string>
++          <string>封闭范围</string>
+          </property>
+          <property name="toolTip">
+           <string>distance to furthest spawning space from optimal AFK position</string>
+@@ -101,7 +101,7 @@
+         </column>
+         <column>
+          <property name="text">
+-          <string>Spawn area</string>
++          <string>刷怪区域</string>
+          </property>
+          <property name="toolTip">
+           <string>horizontal bounding box area inside a 128 block range</string>
+@@ -127,41 +127,41 @@
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelSeed">
+        <property name="toolTip">
+-        <string>Seed can be an integer or text. Leave empty for a random seed.</string>
++        <string>种子可以是整数或文本，留空将会产生一个随机种子</string>
+        </property>
+        <property name="text">
+-        <string>seed:</string>
++        <string>世界种子:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="lineSeed">
+        <property name="toolTip">
+-        <string>press enter to accept</string>
++        <string>按下回车键确认</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+-      <widget class="QLabel" name="labeMC">
++      <widget class="QLabel" name="labelMC">
+        <property name="toolTip">
+-        <string>Minecraft version</string>
++        <string>Minecraft 版本</string>
+        </property>
+        <property name="text">
+-        <string>MC</string>
++        <string>Minecraft</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="buttonGo">
+        <property name="text">
+-        <string>Go</string>
++        <string>开始扫描</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxMC">
+        <property name="toolTip">
+-        <string>Minecraft version</string>
++        <string>Minecraft 版本</string>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+@@ -277,7 +277,7 @@
+    <item row="3" column="0" alignment="Qt::AlignRight">
+     <widget class="QPushButton" name="buttonClose">
+      <property name="text">
+-      <string>Close</string>
++      <string>关闭</string>
+      </property>
+      <property name="icon">
+       <iconset theme="window-close">
+-- 
+2.34.1
+

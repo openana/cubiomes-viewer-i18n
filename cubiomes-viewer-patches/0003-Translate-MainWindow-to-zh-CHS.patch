@@ -1,0 +1,577 @@
+From 631cd0e941bb844345002ce041d48d95139a1be3 Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Mon, 20 Dec 2021 23:13:32 +0800
+Subject: [PATCH] Translate MainWindow to zh-CHS
+
+
+diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
+index b7fd5b4..bff81b9 100644
+--- a/src/mainwindow.cpp
++++ b/src/mainwindow.cpp
+@@ -59,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
+     QCoreApplication::setApplicationName("cubiomes-viewer");
+ 
+     formCond = new FormConditions(this);
+-    ui->collapseConstraints->init("Conditions", formCond, false);
++    ui->collapseConstraints->init("搜索条件", formCond, false);
+     connect(formCond, &FormConditions::changed, this, &MainWindow::onConditionsChanged);
+     ui->collapseConstraints->setInfo(
+         "Help: Conditions",
+@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
+     );
+ 
+     formGen48 = new FormGen48(this);
+-    ui->collapseGen48->init("Seed generator (48-bit)", formGen48, false);
++    ui->collapseGen48->init("种子生成器 (48位)", formGen48, false);
+     connect(formGen48, &FormGen48::changed, this, &MainWindow::onGen48Changed);
+     ui->collapseGen48->setInfo(
+         "Help: Seed generator",
+@@ -107,7 +107,7 @@ MainWindow::MainWindow(QWidget *parent)
+     );
+ 
+     formControl = new FormSearchControl(this);
+-    ui->collapseControl->init("Matching seeds", formControl, false);
++    ui->collapseControl->init("匹配的种子", formControl, false);
+     connect(formControl, &FormSearchControl::selectedSeedChanged, this, &MainWindow::onSelectedSeedChanged);
+     connect(formControl, &FormSearchControl::searchStatusChanged, this, &MainWindow::onSearchStatusChanged);
+     ui->collapseControl->setInfo(
+@@ -124,14 +124,14 @@ MainWindow::MainWindow(QWidget *parent)
+     //ui->frameMap->layout()->addWidget(ui->toolBar);
+     //ui->toolBar->setContentsMargins(0, 0, 0, 0);
+ 
+-    QAction *toorigin = new QAction(QIcon(":/icons/origin.png"), "Goto origin", this);
++    QAction *toorigin = new QAction(QIcon(":/icons/origin.png"), "回到坐标原点", this);
+     connect(toorigin, &QAction::triggered, [=](){ this->mapGoto(0,0,16); });
+     ui->toolBar->addAction(toorigin);
+     ui->toolBar->addSeparator();
+ 
+-    dimactions[0] = addMapAction(-1, "overworld", "Overworld");
+-    dimactions[1] = addMapAction(-1, "nether", "Nether");
+-    dimactions[2] = addMapAction(-1, "the_end", "End");
++    dimactions[0] = addMapAction(-1, "overworld", "主世界");
++    dimactions[1] = addMapAction(-1, "nether", "下界");
++    dimactions[2] = addMapAction(-1, "the_end", "末地");
+     dimgroup = new QActionGroup(this);
+ 
+     for (int i = 0; i < 3; i++)
+@@ -144,29 +144,29 @@ MainWindow::MainWindow(QWidget *parent)
+     ui->toolBar->addSeparator();
+ 
+     saction.resize(STRUCT_NUM);
+-    addMapAction(D_GRID, "grid", "Show grid");
+-    addMapAction(D_SLIME, "slime", "Show slime chunks");
+-    addMapAction(D_SPAWN, "spawn", "Show world spawn");
+-    addMapAction(D_STRONGHOLD, "stronghold", "Show strongholds");
+-    addMapAction(D_VILLAGE, "village", "Show villages");
+-    addMapAction(D_MINESHAFT, "mineshaft", "Show abandoned mineshafts");
+-    addMapAction(D_DESERT, "desert", "Show desert pyramid");
+-    addMapAction(D_JUNGLE, "jungle", "Show jungle temples");
+-    addMapAction(D_HUT, "hut", "Show swamp huts");
+-    addMapAction(D_MONUMENT, "monument", "Show ocean monuments");
+-    addMapAction(D_IGLOO, "igloo", "Show igloos");
+-    addMapAction(D_MANSION, "mansion", "Show woodland mansions");
+-    addMapAction(D_RUINS, "ruins", "Show ocean ruins");
+-    addMapAction(D_SHIPWRECK, "shipwreck", "Show shipwrecks");
+-    addMapAction(D_TREASURE, "treasure", "Show buried treasures");
+-    addMapAction(D_OUTPOST, "outpost", "Show illager outposts");
+-    addMapAction(D_PORTAL, "portal", "Show ruined portals");
++    addMapAction(D_GRID, "grid", "显示网格");
++    addMapAction(D_SLIME, "slime", "显示史莱姆区块");
++    addMapAction(D_SPAWN, "spawn", "显示世界出生点");
++    addMapAction(D_STRONGHOLD, "stronghold", "显示要塞");
++    addMapAction(D_VILLAGE, "village", "显示村庄");
++    addMapAction(D_MINESHAFT, "mineshaft", "显示废弃矿井");
++    addMapAction(D_DESERT, "desert", "显示沙漠神殿");
++    addMapAction(D_JUNGLE, "jungle", "显示丛林神庙");
++    addMapAction(D_HUT, "hut", "显示女巫小屋");
++    addMapAction(D_MONUMENT, "monument", "显示海底神殿");
++    addMapAction(D_IGLOO, "igloo", "显示雪屋");
++    addMapAction(D_MANSION, "mansion", "显示林地府邸");
++    addMapAction(D_RUINS, "ruins", "显示海底废墟");
++    addMapAction(D_SHIPWRECK, "shipwreck", "显示沉船");
++    addMapAction(D_TREASURE, "treasure", "显示埋藏的宝藏");
++    addMapAction(D_OUTPOST, "outpost", "显示掠夺者前哨站");
++    addMapAction(D_PORTAL, "portal", "显示废弃传送门");
+     ui->toolBar->addSeparator();
+-    addMapAction(D_FORTESS, "fortress", "Show nether fortresses");
+-    addMapAction(D_BASTION, "bastion", "Show bastions");
++    addMapAction(D_FORTESS, "fortress", "显示下界要塞");
++    addMapAction(D_BASTION, "bastion", "显示堡垒遗迹");
+     ui->toolBar->addSeparator();
+-    addMapAction(D_ENDCITY, "endcity", "Show end cities");
+-    addMapAction(D_GATEWAY, "gateway", "Show end gateways");
++    addMapAction(D_ENDCITY, "endcity", "显示末地城");
++    addMapAction(D_GATEWAY, "gateway", "显示末地折跃门");
+ 
+     saction[D_GRID]->setChecked(true);
+ 
+@@ -673,15 +673,15 @@ void MainWindow::on_seedEdit_textChanged(const QString &a)
+     int v = str2seed(a, &s);
+     switch (v)
+     {
+-        case 0: ui->labelSeedType->setText("(text)"); break;
+-        case 1: ui->labelSeedType->setText("(numeric)"); break;
+-        case 2: ui->labelSeedType->setText("(random)"); break;
++        case 0: ui->labelSeedType->setText("(文本)"); break;
++        case 1: ui->labelSeedType->setText("(整数)"); break;
++        case 2: ui->labelSeedType->setText("(随机)"); break;
+     }
+ }
+ 
+ void MainWindow::on_actionSave_triggered()
+ {
+-    QString fnam = QFileDialog::getSaveFileName(this, "Save progress", prevdir, "Text files (*.txt);;Any files (*)");
++    QString fnam = QFileDialog::getSaveFileName(this, "保存进度", prevdir, "纯文本 (*.txt);;任意类型 (*)");
+     if (!fnam.isEmpty())
+     {
+         QFileInfo finfo(fnam);
+@@ -697,7 +697,7 @@ void MainWindow::on_actionLoad_triggered()
+         warning("Warning", "Cannot load progress: search is still active.");
+         return;
+     }
+-    QString fnam = QFileDialog::getOpenFileName(this, "Load progress", prevdir, "Text files (*.txt);;Any files (*)");
++    QString fnam = QFileDialog::getOpenFileName(this, "加载进度", prevdir, "纯文本 (*.txt);;任意类型 (*)");
+     if (!fnam.isEmpty())
+     {
+         QFileInfo finfo(fnam);
+@@ -1211,8 +1211,8 @@ L_scan_end:
+ 
+ void MainWindow::on_buttonExport_clicked()
+ {
+-    QString fnam = QFileDialog::getSaveFileName(this, "Export analysis", prevdir,
+-        "Text files (*.txt *csv);;Any files (*)");
++    QString fnam = QFileDialog::getSaveFileName(this, "导出分析结果", prevdir,
++        "纯文本 (*.txt);;逗号分隔值 (*.csv);;任意类型 (*)");
+     if (fnam.isEmpty())
+         return;
+ 
+diff --git a/src/mainwindow.ui b/src/mainwindow.ui
+index b4be99a..125d6ba 100644
+--- a/src/mainwindow.ui
++++ b/src/mainwindow.ui
+@@ -43,24 +43,24 @@
+           <item row="0" column="3">
+            <widget class="QLineEdit" name="seedEdit">
+             <property name="toolTip">
+-             <string>Press enter to accept</string>
++             <string>按下回车键确认</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="lineY">
+             <property name="toolTip">
+-             <string>Show map for this y-level</string>
++             <string>显示当前 Y 坐标下的地图</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="labelY">
+             <property name="toolTip">
+-             <string>Show map for this y-level</string>
++             <string>显示当前 Y 坐标下的地图</string>
+             </property>
+             <property name="text">
+-             <string>Y:</string>
++             <string>Y 坐标:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+@@ -70,10 +70,10 @@
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelSeed">
+             <property name="toolTip">
+-             <string>Seed can be an integer or text. Leave empty for a random seed</string>
++             <string>种子可以是整数或文本，留空将会产生一个随机种子</string>
+             </property>
+             <property name="text">
+-             <string>seed:</string>
++             <string>地图种子:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+@@ -81,12 +81,12 @@
+            </widget>
+           </item>
+           <item row="0" column="0">
+-           <widget class="QLabel" name="labeMC">
++           <widget class="QLabel" name="labelMC">
+             <property name="toolTip">
+-             <string>Minecraft version</string>
++             <string>Minecraft 版本</string>
+             </property>
+             <property name="text">
+-             <string>MC</string>
++             <string>Minecraft</string>
+             </property>
+            </widget>
+           </item>
+@@ -99,17 +99,17 @@
+              </size>
+             </property>
+             <property name="toolTip">
+-             <string>Seed can be an integer or text. Leave empty for a random seed</string>
++             <string>种子可以是整数或文本，留空将会产生一个随机种子</string>
+             </property>
+             <property name="text">
+-             <string>(random)</string>
++             <string>(随机)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboBoxMC">
+             <property name="toolTip">
+-             <string>Minecraft version</string>
++             <string>Minecraft 版本</string>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+@@ -223,7 +223,7 @@
+           <item row="1" column="0" colspan="2">
+            <widget class="QCheckBox" name="checkLarge">
+             <property name="text">
+-             <string>Large biomes</string>
++             <string>巨型生物群系</string>
+             </property>
+            </widget>
+           </item>
+@@ -242,7 +242,7 @@
+             </sizepolicy>
+            </property>
+            <attribute name="title">
+-            <string>Search</string>
++            <string>搜索</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="leftMargin">
+@@ -371,7 +371,7 @@ QSplitter {
+           </widget>
+           <widget class="QWidget" name="tabAnalysis">
+            <attribute name="title">
+-            <string>Analysis</string>
++            <string>分析</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="1" colspan="2">
+@@ -387,7 +387,7 @@ QSplitter {
+                <bool>false</bool>
+               </property>
+               <property name="text">
+-               <string>Export</string>
++               <string>导出</string>
+               </property>
+              </widget>
+             </item>
+@@ -424,12 +424,12 @@ QSplitter {
+               </attribute>
+               <column>
+                <property name="text">
+-                <string>object</string>
++                <string>对象</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+-                <string>count</string>
++                <string>个数</string>
+                </property>
+               </column>
+              </widget>
+@@ -439,7 +439,7 @@ QSplitter {
+               <item>
+                <widget class="QLabel" name="labelX1">
+                 <property name="toolTip">
+-                 <string>Lower bound (inclusive)</string>
++                 <string>最小值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>X&lt;sub&gt;1&lt;/sub&gt;=</string>
+@@ -449,7 +449,7 @@ QSplitter {
+               <item>
+                <widget class="QLineEdit" name="lineEditX1">
+                 <property name="toolTip">
+-                 <string>Lower bound (inclusive)</string>
++                 <string>最小值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>0</string>
+@@ -459,7 +459,7 @@ QSplitter {
+               <item>
+                <widget class="QLabel" name="labelZ1">
+                 <property name="toolTip">
+-                 <string>Lower bound (inclusive)</string>
++                 <string>最小值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>Z&lt;sub&gt;1&lt;/sub&gt;=</string>
+@@ -469,7 +469,7 @@ QSplitter {
+               <item>
+                <widget class="QLineEdit" name="lineEditZ1">
+                 <property name="toolTip">
+-                 <string>Lower bound (inclusive)</string>
++                 <string>最小值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>0</string>
+@@ -492,7 +492,7 @@ QSplitter {
+               <item>
+                <widget class="QLabel" name="labelX2">
+                 <property name="toolTip">
+-                 <string>Upper bound (inclusive)</string>
++                 <string>最大值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>X&lt;sub&gt;2&lt;/sub&gt;=</string>
+@@ -502,7 +502,7 @@ QSplitter {
+               <item>
+                <widget class="QLineEdit" name="lineEditX2">
+                 <property name="toolTip">
+-                 <string>Upper bound (inclusive)</string>
++                 <string>最大值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>0</string>
+@@ -512,7 +512,7 @@ QSplitter {
+               <item>
+                <widget class="QLabel" name="labelZ2">
+                 <property name="toolTip">
+-                 <string>Upper bound (inclusive)</string>
++                 <string>最大值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>Z&lt;sub&gt;2&lt;/sub&gt;=</string>
+@@ -522,7 +522,7 @@ QSplitter {
+               <item>
+                <widget class="QLineEdit" name="lineEditZ2">
+                 <property name="toolTip">
+-                 <string>Upper bound (inclusive)</string>
++                 <string>最大值 (包含)</string>
+                 </property>
+                 <property name="text">
+                  <string>0</string>
+@@ -534,24 +534,24 @@ QSplitter {
+             <item row="2" column="3" colspan="2">
+              <widget class="QPushButton" name="buttonFromVisible">
+               <property name="text">
+-               <string>From visible</string>
++               <string>选取地图可见范围</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelSquareArea">
+               <property name="text">
+-               <string>Within centred square of side =</string>
++               <string>设置以原点为中心正方形区域的边长</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3" colspan="2">
+              <widget class="QCheckBox" name="checkArea">
+               <property name="toolTip">
+-               <string>Specify manual rectangle rather than square</string>
++               <string>手动指定矩形区域而不是正方形区域</string>
+               </property>
+               <property name="text">
+-               <string>Custom area</string>
++               <string>自定义区域</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+@@ -563,27 +563,27 @@ QSplitter {
+               <item row="0" column="2">
+                <widget class="QCheckBox" name="checkConditions">
+                 <property name="toolTip">
+-                 <string>Features that trigger the search conditions, provided the seed matches</string>
++                 <string>当前种子能够匹配的全部搜索条件</string>
+                 </property>
+                 <property name="text">
+-                 <string>Condition trigger</string>
++                 <string>匹配全部搜索条件</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QPushButton" name="buttonAnalysis">
+                 <property name="text">
+-                 <string>Analyze</string>
++                 <string>开始分析</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QCheckBox" name="checkMapOnly">
+                 <property name="toolTip">
+-                 <string>limits analysis to the selected structures and dimension in the map view</string>
++                 <string>将分析结果限制到地图视图中选择的结构和维度</string>
+                 </property>
+                 <property name="text">
+-                 <string>Restrict to map selections</string>
++                 <string>限制地图选择范围</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+@@ -593,20 +593,20 @@ QSplitter {
+               <item row="0" column="1">
+                <widget class="QCheckBox" name="checkBiomes">
+                 <property name="toolTip">
+-                 <string>statistic of biome occurances in area</string>
++                 <string>统计当前区域不同生物群系出现的次数</string>
+                 </property>
+                 <property name="text">
+-                 <string>Biomes</string>
++                 <string>生物群系</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QCheckBox" name="checkStructs">
+                 <property name="toolTip">
+-                 <string>structure positions in area</string>
++                 <string>当前区域不同结构出现的位置</string>
+                 </property>
+                 <property name="text">
+-                 <string>Structures</string>
++                 <string>结构</string>
+                 </property>
+                </widget>
+               </item>
+@@ -649,7 +649,7 @@ QSplitter {
+   </widget>
+   <widget class="QToolBar" name="toolBar">
+    <property name="windowTitle">
+-    <string>toolBar</string>
++    <string>工具栏</string>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+@@ -707,7 +707,7 @@ QToolButton:checked {
+    </property>
+    <widget class="QMenu" name="menuMap">
+     <property name="title">
+-     <string>Map</string>
++     <string>地图</string>
+     </property>
+     <addaction name="actionGo_to"/>
+     <addaction name="actionScan_seed_for_Quad_Huts"/>
+@@ -715,13 +715,13 @@ QToolButton:checked {
+    </widget>
+    <widget class="QMenu" name="menuHelp">
+     <property name="title">
+-     <string>Help</string>
++     <string>帮助</string>
+     </property>
+     <addaction name="actionAbout"/>
+    </widget>
+    <widget class="QMenu" name="menuFile">
+     <property name="title">
+-     <string>File</string>
++     <string>文件</string>
+     </property>
+     <addaction name="actionSave"/>
+     <addaction name="actionLoad"/>
+@@ -733,7 +733,7 @@ QToolButton:checked {
+    </widget>
+    <widget class="QMenu" name="menuEdit">
+     <property name="title">
+-     <string>Edit</string>
++     <string>编辑</string>
+     </property>
+     <addaction name="actionCopy"/>
+     <addaction name="actionPaste"/>
+@@ -750,75 +750,75 @@ QToolButton:checked {
+   </widget>
+   <action name="actionGo_to">
+    <property name="text">
+-    <string>Go to...</string>
++    <string>定位到坐标...</string>
+    </property>
+   </action>
+   <action name="actionScan_seed_for_Quad_Huts">
+    <property name="text">
+-    <string>Scan seed for Quad-Structures...</string>
++    <string>扫描种子中存在的四联结构...</string>
+    </property>
+   </action>
+   <action name="actionAbout">
+    <property name="text">
+-    <string>About</string>
++    <string>关于</string>
+    </property>
+   </action>
+   <action name="actionOpen_shadow_seed">
+    <property name="text">
+-    <string>Open shadow seed</string>
++    <string>转到孪生种子</string>
+    </property>
+   </action>
+   <action name="actionSave">
+    <property name="text">
+-    <string>Save progress...</string>
++    <string>保存进度...</string>
+    </property>
+   </action>
+   <action name="actionLoad">
+    <property name="text">
+-    <string>Load progress...</string>
++    <string>加载进度...</string>
+    </property>
+   </action>
+   <action name="actionSearch_seed_list">
+    <property name="text">
+-    <string>Search seed list...</string>
++    <string>搜索种子列表...</string>
+    </property>
+    <property name="toolTip">
+-    <string>Load seeds from file for search</string>
++    <string>搜索从文件获取的种子列表</string>
+    </property>
+   </action>
+   <action name="actionSearch_full_seed_space">
+    <property name="text">
+-    <string>Search full seed space</string>
++    <string>搜索全部种子空间</string>
+    </property>
+   </action>
+   <action name="actionCopy">
+    <property name="text">
+-    <string>Copy seeds from list</string>
++    <string>从列表中复制种子</string>
+    </property>
+   </action>
+   <action name="actionPaste">
+    <property name="text">
+-    <string>Paste seeds into list</string>
++    <string>粘贴种子到列表中</string>
+    </property>
+   </action>
+   <action name="actionPreferences">
+    <property name="text">
+-    <string>Preferences...</string>
++    <string>偏好设置...</string>
+    </property>
+   </action>
+   <action name="actionQuit">
+    <property name="text">
+-    <string>Quit</string>
++    <string>退出</string>
+    </property>
+   </action>
+   <action name="actionAddShadow">
+    <property name="text">
+-    <string>Add shadow for all seeds</string>
++    <string>为所有种子添加孪生种子</string>
+    </property>
+   </action>
+   <action name="actionExtGen">
+    <property name="text">
+-    <string>Advanced world settings...</string>
++    <string>高级世界设置...</string>
+    </property>
+   </action>
+  </widget>
+-- 
+2.34.1
+

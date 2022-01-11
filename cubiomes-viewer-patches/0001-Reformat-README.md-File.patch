@@ -1,0 +1,55 @@
+From a9cc25d9e4ab55411c858d358329ebfe5e01a592 Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Mon, 20 Dec 2021 18:35:18 +0800
+Subject: [PATCH] Reformat README.md File
+
+
+diff --git a/README.md b/README.md
+index 942e21c..9259e06 100644
+--- a/README.md
++++ b/README.md
+@@ -4,7 +4,6 @@ Cubiomes Viewer provides a graphical interface for the efficient and flexible se
+ 
+ The tool is designed for high performance and supports Minecraft Java Edition main releases 1.0 - 1.18.
+ 
+-
+ ## Download
+ 
+ Precompiled binaries can be found for Linux and Windows under [Releases on github](https://github.com/Cubitect/cubiomes-viewer/releases). The builds are statically linked against [Qt](https://www.qt.io) and should run as-is on most newer distributions.
+@@ -13,26 +12,31 @@ For the linux build you will probably have to add the executable flags to the bi
+ 
+ For Arch linux users, the tool may be found in the [AUR](https://aur.archlinux.org/packages/cubiomes-viewer/) thanks to [JakobDev](https://github.com/JakobDev).
+ 
+-
+ ## Build from source
+ 
+ Install Qt5 development files
++
+ ```
+ $ sudo apt install build-essential qt5-default
+ ```
++
+ get sources
++
+ ```
+ $ git clone --recursive https://github.com/Cubitect/cubiomes-viewer.git
+ ```
++
+ prepare build directory
++
+ ```
+ $ cd cubiomes-viewer
+ $ mkdir build
+ $ cd build
+ ```
++
+ build cubiomes-viewer
++
+ ```
+ $ qmake ..
+ $ make
+ ```
+-
+-- 
+2.34.1
+

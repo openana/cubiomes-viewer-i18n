@@ -1,0 +1,162 @@
+From 602e7700bd3e6c84d3d684597312970c90c1714c Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Tue, 21 Dec 2021 00:31:46 +0800
+Subject: [PATCH] Translate ConfigDialog to zh-CHS
+
+
+diff --git a/src/configdialog.ui b/src/configdialog.ui
+index ab15320..39c5697 100644
+--- a/src/configdialog.ui
++++ b/src/configdialog.ui
+@@ -3,7 +3,7 @@
+  <class>ConfigDialog</class>
+  <widget class="QDialog" name="ConfigDialog">
+   <property name="windowTitle">
+-   <string>Preferences</string>
++   <string>偏好设置</string>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="../icons.qrc">
+@@ -13,28 +13,28 @@
+    <item row="3" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+-      <string>Search</string>
++      <string>搜索</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+-         <string>Size of search item queue:
+-(limits usable threads)</string>
++         <string>搜索实例并行队列的大小:
++(限制可用线程)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+-         <string>Seeds per thread search item:</string>
++         <string>每搜索实例搜索种子个数:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+-         <string>Maximum number of matching seeds:</string>
++         <string>匹配种子的最大缓冲个数:</string>
+         </property>
+        </widget>
+       </item>
+@@ -60,13 +60,13 @@
+    <item row="0" column="0" rowspan="2" colspan="2">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+-      <string>Interface</string>
++      <string>界面</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+-         <string>Biome color customization:</string>
++         <string>自定义生物群系颜色:</string>
+         </property>
+        </widget>
+       </item>
+@@ -80,12 +80,12 @@
+         </property>
+         <item>
+          <property name="text">
+-          <string>System</string>
++          <string>系统预设</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+-          <string>Dark</string>
++          <string>深色模式</string>
+          </property>
+         </item>
+        </widget>
+@@ -93,14 +93,14 @@
+       <item row="4" column="0" colspan="4">
+        <widget class="QCheckBox" name="checkBBoxes">
+         <property name="text">
+-         <string>Outline known bounding boxes</string>
++         <string>标记已知结构边界范围</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+-         <string>GUI style:</string>
++         <string>GUI 风格:</string>
+         </property>
+        </widget>
+       </item>
+@@ -110,14 +110,14 @@
+          <string>Simulate innertia for the map view</string>
+         </property>
+         <property name="text">
+-         <string>Smooth map motion</string>
++         <string>平滑地图移动效果</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="buttonBiomeColor">
+         <property name="text">
+-         <string>[none]</string>
++         <string>[无]</string>
+         </property>
+        </widget>
+       </item>
+@@ -168,7 +168,7 @@
+ Leave blank for the default behaviour</string>
+         </property>
+         <property name="text">
+-         <string>Custom grid spacing:</string>
++         <string>自定义网格间距:</string>
+         </property>
+        </widget>
+       </item>
+@@ -191,27 +191,27 @@ Leave blank for the default behaviour</string>
+    <item row="4" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="title">
+-      <string>Session</string>
++      <string>会话</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0" rowspan="2" colspan="3">
+        <widget class="QCheckBox" name="checkRestore">
+         <property name="text">
+-         <string>Restore previous session at launch</string>
++         <string>启动时恢复到上一个会话</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkAutosave">
+         <property name="text">
+-         <string>Autosave every:</string>
++         <string>自动保存间隔:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QSpinBox" name="spinAutosave">
+         <property name="suffix">
+-         <string> min</string>
++         <string> 分钟</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+-- 
+2.34.1
+

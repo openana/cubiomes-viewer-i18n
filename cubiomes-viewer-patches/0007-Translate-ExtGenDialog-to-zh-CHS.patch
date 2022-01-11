@@ -1,0 +1,31 @@
+From afd8c85fd336afbf90f6d0406a413ae4515634b0 Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Tue, 21 Dec 2021 00:15:36 +0800
+Subject: [PATCH] Translate ExtGenDialog to zh-CHS
+
+
+diff --git a/src/extgendialog.ui b/src/extgendialog.ui
+index bd06a05..f7c4d12 100644
+--- a/src/extgendialog.ui
++++ b/src/extgendialog.ui
+@@ -11,7 +11,7 @@
+    </rect>
+   </property>
+   <property name="windowTitle">
+-   <string>World Settings (experimental)</string>
++   <string>世界设置 (试验性功能)</string>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="../icons.qrc">
+@@ -21,7 +21,7 @@
+    <item row="1" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupSalts">
+      <property name="title">
+-      <string>Override structure salt</string>
++      <string>覆盖结构生成盐值</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+-- 
+2.34.1
+

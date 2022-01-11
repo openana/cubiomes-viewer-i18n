@@ -1,0 +1,47 @@
+From d248b8cdbfb7d302fb96fc160e8c178e3e371dab Mon Sep 17 00:00:00 2001
+From: The jR3f <97492766+jR3f@users.noreply.github.com>
+Date: Mon, 20 Dec 2021 23:54:47 +0800
+Subject: [PATCH] Translate GoToDialog to zh-CHS
+
+
+diff --git a/src/gotodialog.ui b/src/gotodialog.ui
+index e32430f..6b5a479 100644
+--- a/src/gotodialog.ui
++++ b/src/gotodialog.ui
+@@ -3,13 +3,13 @@
+  <class>GotoDialog</class>
+  <widget class="QDialog" name="GotoDialog">
+   <property name="windowTitle">
+-   <string>Coordinates</string>
++   <string>定位到坐标</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+-      <string>Coordinates:</string>
++      <string>坐标:</string>
+      </property>
+     </widget>
+    </item>
+@@ -56,7 +56,7 @@
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+-        <string>Scale:</string>
++        <string>缩放比例:</string>
+        </property>
+       </widget>
+      </item>
+@@ -66,7 +66,7 @@
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+-        <string>blocks per pixel</string>
++        <string>方块/像素</string>
+        </property>
+       </widget>
+      </item>
+-- 
+2.34.1
+
