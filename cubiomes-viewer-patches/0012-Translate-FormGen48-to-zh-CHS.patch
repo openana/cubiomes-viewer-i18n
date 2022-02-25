@@ -1,11 +1,11 @@
-From e1713b776aaae32dfbc275e9d8ea6aab4e12a569 Mon Sep 17 00:00:00 2001
+From f5ee5afe0d5cf25df32e949d4b2c0a547ab5a2b3 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 11 Jan 2022 15:40:59 +0800
 Subject: [PATCH] Translate FormGen48 to zh-CHS
 
 
 diff --git a/src/formgen48.cpp b/src/formgen48.cpp
-index 0055cf7..f3ea454 100644
+index 0055cf7..d71fd88 100644
 --- a/src/formgen48.cpp
 +++ b/src/formgen48.cpp
 @@ -133,15 +133,15 @@ bool FormGen48::setList48(QString path, bool quiet)
@@ -51,6 +51,15 @@ index 0055cf7..f3ea454 100644
  
      ui->labelAuto->setText(modestr);
  
+@@ -380,7 +380,7 @@ void FormGen48::on_comboLow20_currentIndexChanged(int)
+ void FormGen48::on_buttonBrowse_clicked()
+ {
+     QString fnam = QFileDialog::getOpenFileName(
+-        this, tr("Load seed list"), parent->prevdir, tr("Text files (*.txt);;Any files (*)"));
++        this, tr("加载种子列表"), parent->prevdir, tr("纯文本 (*.txt);;任意类型 (*)"));
+     if (!fnam.isEmpty())
+         setList48(fnam, false);
+ }
 diff --git a/src/formgen48.ui b/src/formgen48.ui
 index a6dc3bc..26548c5 100644
 --- a/src/formgen48.ui

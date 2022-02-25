@@ -333,7 +333,7 @@ index aa81ec3..e351852 100644
             <widget class="QCheckBox" name="checkRadius">
              <property name="text">
 -             <string>Within radial distance: </string>
-+             <string>Within radial distance:</string>
++             <string>在径向圆范围内:</string>
              </property>
             </widget>
            </item>

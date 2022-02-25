@@ -1,11 +1,24 @@
-From 72e9ffbec80d8ab95252bcc6d78858bf64c33420 Mon Sep 17 00:00:00 2001
+From f1a49675d49aa42a7458730a45b3125b765ea2ac Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 21 Dec 2021 00:31:46 +0800
 Subject: [PATCH] Translate ConfigDialog to zh-CHS
 
 
+diff --git a/src/configdialog.cpp b/src/configdialog.cpp
+index 1950b06..6c9f56e 100644
+--- a/src/configdialog.cpp
++++ b/src/configdialog.cpp
+@@ -127,7 +127,7 @@ void ConfigDialog::on_buttonBiomeColor_clicked()
+ {
+     QFileInfo finfo(conf.biomeColorPath);
+     QString fnam = QFileDialog::getOpenFileName(
+-        this, tr("Load biome color map"), finfo.absolutePath(), tr("Text files (*.txt);;Any files (*)"));
++        this, tr("加载生物群系颜色图"), finfo.absolutePath(), tr("纯文本 (*.txt);;任意类型 (*)"));
+     if (!fnam.isNull())
+     {
+         conf.biomeColorPath = fnam;
 diff --git a/src/configdialog.ui b/src/configdialog.ui
-index a540d9d..2a6b277 100644
+index a540d9d..4290853 100644
 --- a/src/configdialog.ui
 +++ b/src/configdialog.ui
 @@ -11,7 +11,7 @@
@@ -118,12 +131,20 @@ index a540d9d..2a6b277 100644
          </property>
         </widget>
        </item>
-@@ -179,7 +179,7 @@
+@@ -179,14 +179,14 @@
  Leave blank for the default behaviour</string>
          </property>
          <property name="text">
 -         <string>Custom grid spacing:</string>
 +         <string>自定义网格间距:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+-         <string>Map cache size:</string>
++         <string>地图缓存大小:</string>
          </property>
         </widget>
        </item>

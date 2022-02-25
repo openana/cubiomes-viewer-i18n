@@ -1,11 +1,11 @@
-From e478e1a094194874c2a158134e9e2c7199682229 Mon Sep 17 00:00:00 2001
+From 059baad466ab0e7d765a3ff58e46e342865a9756 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 21 Dec 2021 00:45:47 +0800
 Subject: [PATCH] Translate FormSearchControl to zh-CHS
 
 
 diff --git a/src/formsearchcontrol.cpp b/src/formsearchcontrol.cpp
-index a5635b3..df33855 100644
+index a5635b3..7613ed5 100644
 --- a/src/formsearchcontrol.cpp
 +++ b/src/formsearchcontrol.cpp
 @@ -158,7 +158,7 @@ void FormSearchControl::searchLockUi(bool lock)
@@ -36,6 +36,15 @@ index a5635b3..df33855 100644
          ui->buttonStart->setChecked(false);
  
          // disable until finish
+@@ -269,7 +268,7 @@ void FormSearchControl::on_buttonMore_clicked()
+     if (type == SEARCH_LIST)
+     {
+         QString fnam = QFileDialog::getOpenFileName(
+-            this, tr("Load seed list"), parent->prevdir, tr("Text files (*.txt);;Any files (*)"));
++            this, tr("加载种子列表"), parent->prevdir, tr("纯文本 (*.txt);;任意类型 (*)"));
+         setList64(fnam, false);
+     }
+     else if (type == SEARCH_INC)
 diff --git a/src/formsearchcontrol.ui b/src/formsearchcontrol.ui
 index e456904..c07e5fc 100644
 --- a/src/formsearchcontrol.ui

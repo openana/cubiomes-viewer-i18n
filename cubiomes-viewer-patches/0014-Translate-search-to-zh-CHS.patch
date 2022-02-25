@@ -1,14 +1,22 @@
-From d1ae2d70dec0581f6c5f3edf95b34bc5d286d7cb Mon Sep 17 00:00:00 2001
+From 0cf663ab4bc3f9c113a32d67d61568d86c377b26 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 11 Jan 2022 16:23:41 +0800
 Subject: [PATCH] Translate search to zh-CHS
 
 
 diff --git a/src/search.h b/src/search.h
-index a9bddf2..88039e1 100644
+index a9bddf2..b30aaa0 100644
 --- a/src/search.h
 +++ b/src/search.h
-@@ -132,13 +132,13 @@ static const struct FilterList
+@@ -125,20 +125,20 @@ static const struct FilterList
+         list[F_LOGIC_OR] = FilterInfo{
+             CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, MC_1_0, MC_NEWEST, 0, 0, disp++,
+             ":icons/helper.png",
+-            _("OR logic gate"),
++            _("或逻辑门"),
+             _("This helper is satisfied iff any of the conditions which use it "
+             "for a relative reference are met.")
+         };
          list[F_SCALE_TO_NETHER] = FilterInfo{
              CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, MC_1_0, MC_NEWEST, 0, 0, disp++,
              ":icons/portal.png",
@@ -188,7 +196,7 @@ index a9bddf2..88039e1 100644
              _("Only seeds with the included (+) biomes in the specified area and "
              "discard those that have biomes that are explicitly excluded (-) "
              "at layer OCEAN TEMPERATURE with scale 1:256. "
-@@ -303,77 +303,77 @@ static const struct FilterList
+@@ -303,84 +303,84 @@ static const struct FilterList
          list[F_TEMPS] = FilterInfo{
              CAT_BIOMES, 1, 1, 1, 0, 0, 0, 1024, 0, MC_1_7, MC_1_17, 0, 0, disp++,
              ":icons/tempcat.png",
@@ -278,6 +286,14 @@ index a9bddf2..88039e1 100644
              ""
          };
  
+         list[F_FIRST_STRONGHOLD] = FilterInfo{
+             CAT_OTHER, 0, 1, 1, 1, 0, 0, 1, 0, MC_1_0, MC_NEWEST, 0, 0, disp++,
+             ":icons/stronghold.png",
+-            _("First stronghold"),
++            _("要塞 (第一个)"),
+             _("Finds the approxmiate location of the first stronghold "
+             "(+/-112 blocks). Depends only on the 48-bit seed.")
+         };
 @@ -388,28 +388,28 @@ static const struct FilterList
          list[F_STRONGHOLD] = FilterInfo{
              CAT_STRUCT, 1, 1, 1, 1, 0, 0, 1, 1, MC_1_0, MC_NEWEST, 0, 0, disp++,
