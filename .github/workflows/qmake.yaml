@@ -15,18 +15,18 @@ jobs:
     strategy:
       matrix:
         config:
-          - {
-              name: "Windows Latest x86",
-              os: windows-latest,
-              artifact: "cubiomes-viewer-nightly_zh-Hans_windows_386.exe.zip",
-              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars32.bat",
-            }
-          - {
-              name: "Windows Latest x64",
-              os: windows-latest,
-              artifact: "cubiomes-viewer-nightly_zh-Hans_windows_amd64.exe.zip",
-              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-            }
+          # - {
+          #     name: "Windows Latest x86",
+          #     os: windows-latest,
+          #     artifact: "cubiomes-viewer-nightly_zh-Hans_windows_386.exe.zip",
+          #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars32.bat",
+          #   }
+          # - {
+          #     name: "Windows Latest x64",
+          #     os: windows-latest,
+          #     artifact: "cubiomes-viewer-nightly_zh-Hans_windows_amd64.exe.zip",
+          #     environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+          #   }
           - {
               name: "Linux Latest x64",
               os: ubuntu-latest,
@@ -47,6 +47,15 @@ jobs:
           if ("${{ runner.os }}" STREQUAL "Linux")
             execute_process(
               COMMAND sudo apt install libgl1-mesa-dev
+            )
+          endif()
+
+      - name: Apply patches
+        shell: cmake -P {0}
+        run: |
+          if ("${{ runner.os }}" STREQUAL "Linux")
+            execute_process(
+              COMMAND sh ./applyPatches.sh
             )
           endif()
 
@@ -266,16 +275,16 @@ jobs:
     strategy:
       matrix:
         config:
-          - {
-              name: "Windows Latest x86",
-              os: windows-latest,
-              artifact: "cubiomes-viewer-nightly_zh-Hans_windows_386.exe.zip",
-            }
-          - {
-              name: "Windows Latest x64",
-              os: windows-latest,
-              artifact: "cubiomes-viewer-nightly_zh-Hans_windows_amd64.exe.zip",
-            }
+          # - {
+          #     name: "Windows Latest x86",
+          #     os: windows-latest,
+          #     artifact: "cubiomes-viewer-nightly_zh-Hans_windows_386.exe.zip",
+          #   }
+          # - {
+          #     name: "Windows Latest x64",
+          #     os: windows-latest,
+          #     artifact: "cubiomes-viewer-nightly_zh-Hans_windows_amd64.exe.zip",
+          #   }
           - {
               name: "Linux Latest x64",
               os: ubuntu-latest,
