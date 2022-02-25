@@ -53,11 +53,12 @@ jobs:
       - name: Apply patches
         shell: cmake -P {0}
         run: |
-          if ("${{ runner.os }}" STREQUAL "Linux")
-            execute_process(
-              COMMAND sh ./applyPatches.sh
-            )
-          endif()
+          execute_process(
+            COMMAND git submodule update --init
+          )
+          execute_process(
+            COMMAND bash ./applyPatches.sh
+          )
 
       - name: Download Qt
         id: qt
