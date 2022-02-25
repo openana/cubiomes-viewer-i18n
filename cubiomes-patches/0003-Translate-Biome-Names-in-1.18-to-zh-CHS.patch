@@ -1,14 +1,14 @@
-From b40b505ce27192c8da9cc8dfebe9e9723fa6cc57 Mon Sep 17 00:00:00 2001
+From 5c920f9cffc7f857c94d9aa9b8b9cdfeaa541cf0 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Mon, 20 Dec 2021 19:24:54 +0800
 Subject: [PATCH] Translate Biome Names in 1.18 to zh-CHS
 
 
 diff --git a/util.c b/util.c
-index 5168f59..ce68eeb 100644
+index 014a152..e216415 100644
 --- a/util.c
 +++ b/util.c
-@@ -67,89 +67,89 @@ const char *biome2str(int mc, int id)
+@@ -66,89 +66,89 @@ const char *biome2str(int mc, int id)
          // (based on their features and biome id conversion when upgrading)
          switch (id)
          {
@@ -145,7 +145,7 @@ index 5168f59..ce68eeb 100644
      case modified_jungle: return "丛林变种";
      case modified_jungle_edge: return "丛林边缘变种";
      case tall_birch_forest: return "tall_birch_forest";
-@@ -161,27 +161,27 @@ const char *biome2str(int mc, int id)
+@@ -160,27 +160,27 @@ const char *biome2str(int mc, int id)
      case modified_gravelly_mountains: return "沙砾山地+";
      case shattered_savanna: return "shattered_savanna";
      case shattered_savanna_plateau: return "破碎的热带高原";
@@ -188,5 +188,5 @@ index 5168f59..ce68eeb 100644
      return NULL;
  }
 -- 
-2.34.1
+2.35.1
 

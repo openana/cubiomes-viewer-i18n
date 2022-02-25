@@ -1,63 +1,58 @@
-From 67980e9682dcffbb80664d36f6dc5a1b80a513a1 Mon Sep 17 00:00:00 2001
+From e1713b776aaae32dfbc275e9d8ea6aab4e12a569 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 11 Jan 2022 15:40:59 +0800
 Subject: [PATCH] Translate FormGen48 to zh-CHS
 
 
 diff --git a/src/formgen48.cpp b/src/formgen48.cpp
-index 2f2506e..40769fa 100644
+index 0055cf7..f3ea454 100644
 --- a/src/formgen48.cpp
 +++ b/src/formgen48.cpp
-@@ -110,20 +110,20 @@ bool FormGen48::setList48(QString path, bool quiet)
-         {
-             slist48.assign(l, l+len);
-             free(l);
--            ui->lineList48->setText("[" + QString::number(len) + " seeds] " + finfo.baseName());
-+            ui->lineList48->setText("[" + QString::number(len) + " 个种子] " + finfo.baseName());
-             ok = true;
-         }
-         else
-         {
-             if (!quiet)
-                 QMessageBox::warning(this, "Warning", "Failed to load seed list from file", QMessageBox::Ok);
--            ui->lineList48->setText("[no seeds!] " + finfo.baseName());
-+            ui->lineList48->setText("[没有种子!] " + finfo.baseName());
-         }
+@@ -133,15 +133,15 @@ bool FormGen48::setList48(QString path, bool quiet)
+ 
+     if (slist48path.isEmpty())
+     {
+-        ui->lineList48->setText(tr("[none]"));
++        ui->lineList48->setText(tr("[空]"));
      }
      else
      {
-         slist48path.clear();
--        ui->lineList48->setText("[none]");
-+        ui->lineList48->setText("[空]");
-         slist48.clear();
+         QString fname = QFileInfo(path).baseName();
+         if (slist48.empty())
+-            ui->lineList48->setText(tr("[no seeds!] %1").arg(fname));
++            ui->lineList48->setText(tr("[没有种子!] %1").arg(fname));
+         else
+-            ui->lineList48->setText(tr("[%n seed(s)] %1", "", slist48.size()).arg(fname));
++            ui->lineList48->setText(tr("[%n 个种子] %1", "", slist48.size()).arg(fname));
      }
+ 
      emit changed();
-@@ -235,7 +235,7 @@ void FormGen48::updateCount()
+@@ -255,7 +255,7 @@ void FormGen48::updateCount()
  
      if (cnt >= MASK48+1)
      {
--        ui->labelCount->setText("all");
-+        ui->labelCount->setText("全部");
+-        ui->labelCount->setText(tr("all", "Checking all 64-bit seeds"));
++        ui->labelCount->setText(tr("全部", "Checking all 64-bit seeds"));
      }
      else
      {
-@@ -266,11 +266,11 @@ void FormGen48::updateAutoUi()
+@@ -286,11 +286,11 @@ void FormGen48::updateAutoUi()
      bool isqh = cond.type >= F_QH_IDEAL && cond.type <= F_QH_BARELY;
      bool isqm = cond.type >= F_QM_95 && cond.type <= F_QM_90;
      if (isqh)
--        modestr = "[Quad-hut]";
-+        modestr = "[四联女巫小屋]";
+-        modestr = tr("[Quad-hut]");
++        modestr = tr("[四联女巫小屋]");
      else if (isqm)
--        modestr = "[Quad-monument]";
-+        modestr = "[四联海底神殿]";
+-        modestr = tr("[Quad-monument]");
++        modestr = tr("[四联海底神殿]");
      else
--        modestr = "[None]";
-+        modestr = "[空]";
+-        modestr = tr("[None]");
++        modestr = tr("[空]");
  
      ui->labelAuto->setText(modestr);
  
 diff --git a/src/formgen48.ui b/src/formgen48.ui
-index 1aab511..91841aa 100644
+index a6dc3bc..26548c5 100644
 --- a/src/formgen48.ui
 +++ b/src/formgen48.ui
 @@ -36,7 +36,7 @@
@@ -183,16 +178,7 @@ index 1aab511..91841aa 100644
              </property>
             </widget>
            </item>
-@@ -232,7 +232,7 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelTranspose">
-            <property name="text">
--            <string>Transpose by regions (multiplied by x512):</string>
-+            <string>按区域转置 (倍率x512):</string>
-            </property>
-           </widget>
-          </item>
-@@ -255,14 +255,14 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
+@@ -248,21 +248,21 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
           <item row="0" column="2">
            <widget class="QRadioButton" name="radioAuto">
             <property name="text">
@@ -206,6 +192,14 @@ index 1aab511..91841aa 100644
             <property name="text">
 -            <string>Manual</string>
 +            <string>手动</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelTranspose">
+            <property name="text">
+-            <string>Transpose by regions (multiplied by ×512):</string>
++            <string>按区域转置 (倍率x512):</string>
             </property>
            </widget>
           </item>
@@ -291,5 +285,5 @@ index 1aab511..91841aa 100644
         </widget>
        </item>
 -- 
-2.25.1
+2.35.1
 

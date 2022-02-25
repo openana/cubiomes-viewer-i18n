@@ -1,11 +1,11 @@
-From a9cc25d9e4ab55411c858d358329ebfe5e01a592 Mon Sep 17 00:00:00 2001
+From 02550350bb3e59ea9eec0decb205df7bb7a9da9e Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Mon, 20 Dec 2021 18:35:18 +0800
 Subject: [PATCH] Reformat README.md File
 
 
 diff --git a/README.md b/README.md
-index 942e21c..9259e06 100644
+index c629337..01236b8 100644
 --- a/README.md
 +++ b/README.md
 @@ -4,7 +4,6 @@ Cubiomes Viewer provides a graphical interface for the efficient and flexible se
@@ -16,9 +16,9 @@ index 942e21c..9259e06 100644
  ## Download
  
  Precompiled binaries can be found for Linux and Windows under [Releases on github](https://github.com/Cubitect/cubiomes-viewer/releases). The builds are statically linked against [Qt](https://www.qt.io) and should run as-is on most newer distributions.
-@@ -13,26 +12,31 @@ For the linux build you will probably have to add the executable flags to the bi
+@@ -15,26 +14,31 @@ For Arch linux users, the tool may be found in the [AUR](https://aur.archlinux.o
  
- For Arch linux users, the tool may be found in the [AUR](https://aur.archlinux.org/packages/cubiomes-viewer/) thanks to [JakobDev](https://github.com/JakobDev).
+ Non-PC platforms, such as macOS, are not formally supported, but you can check [here](https://github.com/Cubitect/cubiomes-viewer/issues/107) for more information on this issue.
  
 -
  ## Build from source
@@ -51,5 +51,5 @@ index 942e21c..9259e06 100644
  ```
 -
 -- 
-2.34.1
+2.35.1
 

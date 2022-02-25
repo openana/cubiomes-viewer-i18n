@@ -1,54 +1,55 @@
-From f30d38a501771ba9a6cadf99e7e7a3032379cd27 Mon Sep 17 00:00:00 2001
+From e478e1a094194874c2a158134e9e2c7199682229 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 21 Dec 2021 00:45:47 +0800
 Subject: [PATCH] Translate FormSearchControl to zh-CHS
 
 
 diff --git a/src/formsearchcontrol.cpp b/src/formsearchcontrol.cpp
-index 1acdc66..ff69f43 100644
+index a5635b3..df33855 100644
 --- a/src/formsearchcontrol.cpp
 +++ b/src/formsearchcontrol.cpp
-@@ -148,7 +148,7 @@ void FormSearchControl::searchLockUi(bool lock)
+@@ -158,7 +158,7 @@ void FormSearchControl::searchLockUi(bool lock)
      }
      else
      {
--        ui->buttonStart->setText("Start search");
-+        ui->buttonStart->setText("开始搜索");
+-        ui->buttonStart->setText(tr("Start search"));
++        ui->buttonStart->setText(tr("开始搜索"));
          ui->buttonStart->setIcon(QIcon(":/icons/search.png"));
          ui->buttonStart->setChecked(false);
          ui->buttonStart->setEnabled(true);
-@@ -227,7 +227,7 @@ void FormSearchControl::on_buttonStart_clicked()
+@@ -237,7 +237,7 @@ void FormSearchControl::on_buttonStart_clicked()
          if (ok)
          {
              ui->lineStart->setText(QString::asprintf("%" PRId64, (int64_t)sc.startseed));
--            ui->buttonStart->setText("Abort search");
-+            ui->buttonStart->setText("中止搜索");
+-            ui->buttonStart->setText(tr("Abort search"));
++            ui->buttonStart->setText(tr("中止搜索"));
              ui->buttonStart->setIcon(QIcon(":/icons/cancel.png"));
              sthread.start();
              searchLockUi(true);
-@@ -242,7 +242,7 @@ void FormSearchControl::on_buttonStart_clicked()
+@@ -252,8 +252,7 @@ void FormSearchControl::on_buttonStart_clicked()
          sthread.stop(); // tell search to stop at next convenience
          //sthread.quit(); // tell the event loop to exit
          //sthread.wait(); // wait for search to finish
--        ui->buttonStart->setText("Start search");
-+        ui->buttonStart->setText("开始搜索");
-         ui->buttonStart->setIcon(QIcon(":/icons/search.png"));
+-        ui->buttonStart->setText(tr("Start search"));
+-        ui->buttonStart->setIcon(QIcon(":/icons/search.png"));
++        ui->buttonStart->setText(tr("开始搜索"));
          ui->buttonStart->setChecked(false);
  
+         // disable until finish
 diff --git a/src/formsearchcontrol.ui b/src/formsearchcontrol.ui
-index d9e70fc..f77fadb 100644
+index e456904..c07e5fc 100644
 --- a/src/formsearchcontrol.ui
 +++ b/src/formsearchcontrol.ui
-@@ -83,7 +83,7 @@
+@@ -78,7 +78,7 @@
       </attribute>
       <column>
        <property name="text">
--       <string>Hex  (Low-48 | Top-16)</string>
+-       <string>Hex  low-48 | top-16</string>
 +       <string>16进制 (低48位|高16位)</string>
        </property>
        <property name="textAlignment">
         <set>AlignLeading|AlignVCenter</set>
-@@ -91,7 +91,7 @@
+@@ -86,7 +86,7 @@
       </column>
       <column>
        <property name="text">
@@ -57,7 +58,7 @@ index d9e70fc..f77fadb 100644
        </property>
        <property name="textAlignment">
         <set>AlignLeading|AlignVCenter</set>
-@@ -133,7 +133,7 @@
+@@ -128,7 +128,7 @@
       <item row="0" column="5">
        <widget class="QLabel" name="label_3">
         <property name="text">
@@ -66,7 +67,7 @@ index d9e70fc..f77fadb 100644
         </property>
        </widget>
       </item>
-@@ -143,7 +143,7 @@
+@@ -138,7 +138,7 @@
          <string>stop as soon as the next set of matching seeds is found</string>
         </property>
         <property name="text">
@@ -75,7 +76,7 @@ index d9e70fc..f77fadb 100644
         </property>
         <property name="checked">
          <bool>true</bool>
-@@ -156,7 +156,7 @@
+@@ -151,7 +151,7 @@
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;searching algorithm&lt;/p&gt;&lt;p&gt;incremental: best for non-exhaustive biome searches&lt;/p&gt;&lt;p&gt;48-bit family blocks: best for searches with strong structure restrictions&lt;/p&gt;&lt;p&gt;seed list from file...: load and search through a pre-computed list of seed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
@@ -84,7 +85,7 @@ index d9e70fc..f77fadb 100644
         </property>
        </widget>
       </item>
-@@ -189,7 +189,7 @@
+@@ -184,7 +184,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
@@ -93,7 +94,7 @@ index d9e70fc..f77fadb 100644
         </property>
        </widget>
       </item>
-@@ -213,17 +213,17 @@
+@@ -208,17 +208,17 @@
         </property>
         <item>
          <property name="text">
@@ -114,7 +115,7 @@ index d9e70fc..f77fadb 100644
          </property>
         </item>
        </widget>
-@@ -257,7 +257,7 @@
+@@ -247,7 +247,7 @@
         <item>
          <widget class="QPushButton" name="buttonClear">
           <property name="text">
@@ -123,7 +124,7 @@ index d9e70fc..f77fadb 100644
           </property>
           <property name="icon">
            <iconset resource="../icons.qrc">
-@@ -268,7 +268,7 @@
+@@ -258,7 +258,7 @@
         <item>
          <widget class="QPushButton" name="buttonStart">
           <property name="text">
@@ -133,5 +134,5 @@ index d9e70fc..f77fadb 100644
           <property name="icon">
            <iconset resource="../icons.qrc">
 -- 
-2.34.1
+2.35.1
 

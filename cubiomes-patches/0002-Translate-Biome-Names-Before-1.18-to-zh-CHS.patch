@@ -1,14 +1,14 @@
-From b19a47cde4cb0627524ad48f114b39dd687a8dff Mon Sep 17 00:00:00 2001
+From d7f80dfbed7a9c217e41cb9ec7997c98335517d8 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Mon, 20 Dec 2021 18:59:18 +0800
 Subject: [PATCH] Translate Biome Names Before 1.18 to zh-CHS
 
 
 diff --git a/util.c b/util.c
-index e327664..5168f59 100644
+index 27bdf6c..014a152 100644
 --- a/util.c
 +++ b/util.c
-@@ -97,35 +97,35 @@ const char *biome2str(int mc, int id)
+@@ -96,35 +96,35 @@ const char *biome2str(int mc, int id)
      case frozen_ocean: return "frozen_ocean";
      case frozen_river: return "frozen_river";
      case snowy_tundra: return "snowy_tundra";
@@ -55,7 +55,7 @@ index e327664..5168f59 100644
      // 40  --  1.13
      case small_end_islands: return "small_end_islands";
      case end_midlands: return "end_midlands";
-@@ -134,7 +134,7 @@ const char *biome2str(int mc, int id)
+@@ -133,7 +133,7 @@ const char *biome2str(int mc, int id)
      case warm_ocean: return "warm_ocean";
      case lukewarm_ocean: return "lukewarm_ocean";
      case cold_ocean: return "cold_ocean";
@@ -64,7 +64,7 @@ index e327664..5168f59 100644
      case deep_lukewarm_ocean: return "deep_lukewarm_ocean";
      case deep_cold_ocean: return "deep_cold_ocean";
      // 50
-@@ -144,29 +144,29 @@ const char *biome2str(int mc, int id)
+@@ -143,29 +143,29 @@ const char *biome2str(int mc, int id)
  
      // mutated variants
      case sunflower_plains: return "sunflower_plains";
@@ -109,5 +109,5 @@ index e327664..5168f59 100644
      case soul_sand_valley: return "soul_sand_valley";
      case crimson_forest: return "crimson_forest";
 -- 
-2.34.1
+2.35.1
 

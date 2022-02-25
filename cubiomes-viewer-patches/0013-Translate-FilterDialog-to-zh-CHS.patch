@@ -1,26 +1,27 @@
-From 0a87fdfde06d9a715aea8849c82f4fda888768b4 Mon Sep 17 00:00:00 2001
+From 176895f37622b42d0edb6370ee98bcbeec969d51 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Tue, 11 Jan 2022 16:14:08 +0800
 Subject: [PATCH] Translate FilterDialog to zh-CHS
 
 
 diff --git a/src/filterdialog.cpp b/src/filterdialog.cpp
-index f38d0b8..c4ed905 100644
+index 3d9780d..0617a70 100644
 --- a/src/filterdialog.cpp
 +++ b/src/filterdialog.cpp
-@@ -61,9 +61,9 @@ FilterDialog::FilterDialog(FormConditions *parent, Config *config, int mcversion
+@@ -63,10 +63,10 @@ FilterDialog::FilterDialog(FormConditions *parent, Config *config, int mcversion
  
      textDescription = new QTextEdit(this);
      textDescription->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
--    ui->collapseDescription->init("Description", textDescription, true);
-+    ui->collapseDescription->init("介绍", textDescription, true);
+-    ui->collapseDescription->init(tr("Description"), textDescription, true);
++    ui->collapseDescription->init(tr("介绍"), textDescription, true);
  
--    QString mcs = "MC ";
-+    QString mcs = "Minecraft ";
-     mcs += (mc2str(mc) ? mc2str(mc) : "?");
+     const char *p_mcs = mc2str(mc);
+-    QString mcs = tr("MC %1", "Minecraft version").arg(p_mcs ? p_mcs : "?");
++    QString mcs = tr("Minecraft %1", "Minecraft version").arg(p_mcs ? p_mcs : "?");
      ui->labelMC->setText(mcs);
  
-@@ -208,22 +208,22 @@ FilterDialog::FilterDialog(FormConditions *parent, Config *config, int mcversion
+ 
+@@ -218,22 +218,22 @@ FilterDialog::FilterDialog(FormConditions *parent, Config *config, int mcversion
      SETUP_TEMPCAT_SPINBOX(Special+Lush);
      SETUP_TEMPCAT_SPINBOX(Special+Cold);
  
@@ -59,70 +60,59 @@ index f38d0b8..c4ed905 100644
  
      ui->scrollBiomes->setStyleSheet(
              "QCheckBox::indicator:unchecked     { image: url(:/icons/check0.png); }\n"
-@@ -432,17 +432,17 @@ void FilterDialog::updateMode()
- 
+@@ -467,17 +467,17 @@ void FilterDialog::updateMode()
      if (ft.step > 1)
      {
--        loc = QString::asprintf("Location (coordinates are multiplied by x%d)", ft.step);
--        areatip = QString::asprintf("From floor(-[S] / 2) x%d to floor([S] / 2) x%d on both axes (inclusive)", ft.step, ft.step);
--        lowtip = QString::asprintf("Lower bound x%d (inclusive)", ft.step);
--        uptip = QString::asprintf("Upper bound x%d (inclusive)", ft.step);
-+        loc = QString::asprintf("位置 (坐标倍率x%d)", ft.step);
-+        areatip = QString::asprintf("From floor(-[S] / 2) x%d to floor([S] / 2) x%d on both axes (包含)", ft.step, ft.step);
-+        lowtip = QString::asprintf("最小值 x%d (包含)", ft.step);
-+        uptip = QString::asprintf("最大值 x%d (包含)", ft.step);
+         QString multxt = QString("%1%2").arg(QChar(0xD7)).arg(ft.step);
+-        loc = tr("Location (coordinates are multiplied by %1)").arg(multxt);
+-        areatip = tr("From floor(-x/2)%1 to floor(x/2)%1 on both axes (inclusive)").arg(multxt);
+-        lowtip = tr("Lower bound %1 (inclusive)").arg(multxt);
+-        uptip = tr("Upper bound %1 (inclusive)").arg(multxt);
++        loc = tr("位置 (坐标倍率 %1)").arg(multxt);
++        areatip = tr("From floor(-x/2)%1 to floor(x/2)%1 on both axes (包含)").arg(multxt);
++        lowtip = tr("最小值 %1 (包含)").arg(multxt);
++        uptip = tr("最大值 %1 (包含)").arg(multxt);
      }
      else
      {
--        loc = "Location";
--        areatip = "From floor(-[S] / 2) to floor([S] / 2) on both axes (inclusive)";
--        lowtip = QString::asprintf("Lower bound (inclusive)");
--        uptip = QString::asprintf("Upper bound (inclusive)");
-+        loc = "位置";
-+        areatip = "From floor(-[S] / 2) to floor([S] / 2) on both axes (包含)";
-+        lowtip = QString::asprintf("最小值 (包含)");
-+        uptip = QString::asprintf("最大值 (包含)");
+-        loc = tr("Location");
+-        areatip = tr("From floor(-x/2) to floor(x/2) on both axes (inclusive)");
+-        lowtip = tr("Lower bound (inclusive)");
+-        uptip = tr("Upper bound (inclusive)");
++        loc = tr("位置");
++        areatip = tr("From floor(-x/2) to floor(x/2) on both axes (包含)");
++        lowtip = tr("最小值 (包含)");
++        uptip = tr("最大值 (包含)");
      }
      ui->groupBoxPosition->setTitle(loc);
-     ui->labelSquareArea->setToolTip(areatip);
-@@ -754,7 +754,7 @@ void FilterDialog::on_comboBoxCat_currentIndexChanged(int idx)
+     ui->radioSquare->setToolTip(areatip);
+@@ -804,7 +804,7 @@ void FilterDialog::on_comboBoxCat_currentIndexChanged(int idx)
      ui->comboBoxType->clear();
  
      int slot = 0;
--    ui->comboBoxType->insertItem(slot, "Select filter", QVariant::fromValue((int)F_SELECT));
-+    ui->comboBoxType->insertItem(slot, "选择过滤器", QVariant::fromValue((int)F_SELECT));
+-    ui->comboBoxType->insertItem(slot, tr("Select filter"), QVariant::fromValue((int)F_SELECT));
++    ui->comboBoxType->insertItem(slot, tr("选择过滤器"), QVariant::fromValue((int)F_SELECT));
  
      const FilterInfo *ft_list[FILTER_MAX] = {};
      const FilterInfo *ft;
 diff --git a/src/filterdialog.h b/src/filterdialog.h
-index 1f7e67b..8f8327c 100644
+index d1d07ea..2b9ee0b 100644
 --- a/src/filterdialog.h
 +++ b/src/filterdialog.h
-@@ -29,18 +29,18 @@ public:
-     virtual ~SpinExclude() {}
-     virtual int valueFromText(const QString &text) const override
+@@ -36,9 +36,9 @@ public:
      {
--        if (text == "0 (ignore)")
-+        if (text == "0 (忽略)")
-             return 0;
--        if (text == "-1 (exclude)")
-+        if (text == "-1 (排除)")
-             return -1;
-         return QSpinBox::valueFromText(text);
-     }
-     virtual QString textFromValue(int value) const override
-     {
+         QString txt = QSpinBox::textFromValue(value);
          if (value == 0)
--            return "0 (ignore)";
-+            return "0 (忽略)";
+-            txt += " " + tr("(ignore)");
++            txt += " " + tr("(忽略)");
          if (value == -1)
--            return "-1 (exclude)";
-+            return "-1 (排除)";
-         return QSpinBox::textFromValue(value);
+-            txt += " " + tr("(exclude)");
++            txt += " " + tr("(排除)");
+         return txt;
      }
  
 diff --git a/src/filterdialog.ui b/src/filterdialog.ui
-index ffaef50..605f692 100644
+index aa81ec3..e351852 100644
 --- a/src/filterdialog.ui
 +++ b/src/filterdialog.ui
 @@ -11,7 +11,7 @@
@@ -157,7 +147,7 @@ index ffaef50..605f692 100644
 +         <string>算法辅助点</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -56,7 +56,7 @@
         </item>
         <item>
@@ -166,7 +156,7 @@ index ffaef50..605f692 100644
 +         <string>四联结构</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -65,7 +65,7 @@
         </item>
         <item>
@@ -175,7 +165,7 @@ index ffaef50..605f692 100644
 +         <string>结构</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -74,7 +74,7 @@
         </item>
         <item>
@@ -184,7 +174,7 @@ index ffaef50..605f692 100644
 +         <string>主世界生物群系</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -83,7 +83,7 @@
         </item>
         <item>
@@ -193,7 +183,7 @@ index ffaef50..605f692 100644
 +         <string>下界生物群系</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -92,7 +92,7 @@
         </item>
         <item>
@@ -202,7 +192,7 @@ index ffaef50..605f692 100644
 +         <string>末地生物群系</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -101,7 +101,7 @@
         </item>
         <item>
@@ -211,7 +201,7 @@ index ffaef50..605f692 100644
 +         <string>其他</string>
          </property>
          <property name="icon">
-          <iconset resource="../icons.qrc">
+          <iconset resource="../rc/icons.qrc">
 @@ -135,7 +135,7 @@
         </property>
         <item>
@@ -230,7 +220,7 @@ index ffaef50..605f692 100644
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-@@ -163,13 +163,13 @@
+@@ -163,7 +163,7 @@
         <item>
          <widget class="QGroupBox" name="groupBoxPosition">
           <property name="title">
@@ -238,15 +228,8 @@ index ffaef50..605f692 100644
 +          <string>位置</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="4" column="0">
-            <widget class="QLabel" name="labelRelative">
-             <property name="text">
--             <string>Location is relative to:</string>
-+             <string>中心位置相对于:</string>
-             </property>
-            </widget>
-           </item>
-@@ -187,7 +187,7 @@
+           <item row="1" column="3">
+@@ -193,7 +193,7 @@
             <widget class="QComboBox" name="comboBoxRelative">
              <item>
               <property name="text">
@@ -255,33 +238,16 @@ index ffaef50..605f692 100644
               </property>
              </item>
             </widget>
-@@ -205,7 +205,7 @@
-              <string>Specify manual rectangle rather than square</string>
-             </property>
+@@ -208,7 +208,7 @@
+           <item row="3" column="0">
+            <widget class="QRadioButton" name="radioCustom">
              <property name="text">
--             <string>Custom area</string>
-+             <string>自定义区域</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-@@ -215,14 +215,14 @@
-           <item row="0" column="0">
-            <widget class="QLabel" name="labelSpinBox">
-             <property name="text">
--             <string>Instances within area:</string>
-+             <string>区域内的实例数:</string>
+-             <string>Custom:</string>
++             <string>自定义区域:</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="labelSquareArea">
-             <property name="text">
--             <string>Within centred square of side:</string>
-+             <string>设置正方形区域的边长:</string>
-             </property>
-            </widget>
-           </item>
-@@ -231,7 +231,7 @@
+@@ -217,7 +217,7 @@
              <item>
               <widget class="QLabel" name="labelX1">
                <property name="toolTip">
@@ -290,7 +256,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>X&lt;sub&gt;1&lt;/sub&gt;:</string>
-@@ -241,7 +241,7 @@
+@@ -227,7 +227,7 @@
              <item>
               <widget class="QLineEdit" name="lineEditX1">
                <property name="toolTip">
@@ -299,7 +265,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>0</string>
-@@ -251,7 +251,7 @@
+@@ -237,7 +237,7 @@
              <item>
               <widget class="QLabel" name="labelZ1">
                <property name="toolTip">
@@ -308,7 +274,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>Z&lt;sub&gt;1&lt;/sub&gt;:</string>
-@@ -261,7 +261,7 @@
+@@ -247,7 +247,7 @@
              <item>
               <widget class="QLineEdit" name="lineEditZ1">
                <property name="toolTip">
@@ -317,7 +283,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>0</string>
-@@ -284,7 +284,7 @@
+@@ -270,7 +270,7 @@
              <item>
               <widget class="QLabel" name="labelX2">
                <property name="toolTip">
@@ -326,7 +292,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>X&lt;sub&gt;2&lt;/sub&gt;:</string>
-@@ -294,7 +294,7 @@
+@@ -280,7 +280,7 @@
              <item>
               <widget class="QLineEdit" name="lineEditX2">
                <property name="toolTip">
@@ -335,7 +301,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>0</string>
-@@ -304,7 +304,7 @@
+@@ -290,7 +290,7 @@
              <item>
               <widget class="QLabel" name="labelZ2">
                <property name="toolTip">
@@ -344,7 +310,7 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>Z&lt;sub&gt;2&lt;/sub&gt;:</string>
-@@ -314,7 +314,7 @@
+@@ -300,7 +300,7 @@
              <item>
               <widget class="QLineEdit" name="lineEditZ2">
                <property name="toolTip">
@@ -353,7 +319,41 @@ index ffaef50..605f692 100644
                </property>
                <property name="text">
                 <string>0</string>
-@@ -336,7 +336,7 @@
+@@ -312,7 +312,7 @@
+           <item row="2" column="0" colspan="3">
+            <widget class="QRadioButton" name="radioSquare">
+             <property name="text">
+-             <string>Within centred square of side:</string>
++             <string>设置正方形区域的边长:</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+@@ -322,21 +322,21 @@
+           <item row="1" column="0" colspan="3">
+            <widget class="QCheckBox" name="checkRadius">
+             <property name="text">
+-             <string>Within radial distance: </string>
++             <string>Within radial distance:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="labelSpinBox">
+             <property name="text">
+-             <string>Instances within area:</string>
++             <string>区域内的实例数:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="3">
+            <widget class="QLabel" name="labelRelative">
+             <property name="text">
+-             <string>Location is relative to:</string>
++             <string>中心位置相对于:</string>
+             </property>
+            </widget>
+           </item>
+@@ -353,7 +353,7 @@
           </property>
           <widget class="QWidget" name="tabBiomes">
            <attribute name="title">
@@ -362,7 +362,7 @@ index ffaef50..605f692 100644
            </attribute>
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="1" column="3">
-@@ -355,14 +355,14 @@
+@@ -372,14 +372,14 @@
                <string>Enables optimizations that trade accuracy for speed</string>
               </property>
               <property name="text">
@@ -379,7 +379,7 @@ index ffaef50..605f692 100644
               </property>
              </widget>
             </item>
-@@ -396,21 +396,21 @@
+@@ -413,21 +413,21 @@
               <item>
                <widget class="QPushButton" name="buttonUncheck">
                 <property name="text">
@@ -404,7 +404,7 @@ index ffaef50..605f692 100644
                 </property>
                </widget>
               </item>
-@@ -433,13 +433,13 @@
+@@ -450,13 +450,13 @@
           </widget>
           <widget class="QWidget" name="tabTemps">
            <attribute name="title">
@@ -420,7 +420,7 @@ index ffaef50..605f692 100644
               </property>
              </widget>
             </item>
-@@ -463,13 +463,13 @@
+@@ -480,13 +480,13 @@
           </widget>
           <widget class="QWidget" name="tabVariants">
            <attribute name="title">
@@ -436,7 +436,7 @@ index ffaef50..605f692 100644
               </property>
              </widget>
             </item>
-@@ -479,7 +479,7 @@
+@@ -496,7 +496,7 @@
                <string>Allow only structures that start with one of the selected pieces</string>
               </property>
               <property name="text">
@@ -445,7 +445,7 @@ index ffaef50..605f692 100644
               </property>
              </widget>
             </item>
-@@ -531,7 +531,7 @@
+@@ -548,7 +548,7 @@
       <item>
        <widget class="QPushButton" name="buttonCancel">
         <property name="text">
@@ -454,7 +454,7 @@ index ffaef50..605f692 100644
         </property>
         <property name="icon">
          <iconset theme="dialog-cancel">
-@@ -543,7 +543,7 @@
+@@ -559,7 +559,7 @@
       <item>
        <widget class="QPushButton" name="buttonOk">
         <property name="text">
@@ -464,5 +464,5 @@ index ffaef50..605f692 100644
         <property name="icon">
          <iconset theme="dialog-ok">
 -- 
-2.25.1
+2.35.1
 

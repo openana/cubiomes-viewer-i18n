@@ -1,4 +1,4 @@
-From 92e26e1f13f80ecd101560b1a20fd44e575bd85d Mon Sep 17 00:00:00 2001
+From e73bdf3fd2afadf793dc4c2f744d0499a68100f5 Mon Sep 17 00:00:00 2001
 From: The jR3f <97492766+jR3f@users.noreply.github.com>
 Date: Mon, 20 Dec 2021 18:37:16 +0800
 Subject: [PATCH] Relink cubiomes Path
@@ -15,11 +15,11 @@ index 5384a9d..0000000
 -	url = https://github.com/Cubitect/cubiomes.git
 diff --git a/cubiomes b/cubiomes
 deleted file mode 160000
-index d81832c..0000000
+index 027cd68..0000000
 --- a/cubiomes
 +++ /dev/null
 @@ -1 +0,0 @@
--Subproject commit d81832c67098f861406abe55f7459d87ac5f88b7
+-Subproject commit 027cd6845a6d545625a3c0cdaf957a3c4d906fef
 diff --git a/cubiomes b/cubiomes
 new file mode 120000
 index 0000000..29a5473
@@ -29,5 +29,5 @@ index 0000000..29a5473
 +../cubiomes-i18n
 \ No newline at end of file
 -- 
-2.34.1
+2.35.1
 
