@@ -5,7 +5,7 @@ on: [push]
 env:
   QT_VERSION: 5.14.0
   QT_CREATOR_VERSION: 4.11.0
-  PLUGIN_PRO: ../cubiomes-viewer-i18n/cubiomes-viewer.pro
+  PLUGIN_PRO: cubiomes-viewer-i18n/cubiomes-viewer.pro
   PLUGIN_NAME: cubiomes-viewer
 
 jobs:
@@ -51,14 +51,12 @@ jobs:
           endif()
 
       - name: Apply patches
-        shell: cmake -P {0}
+        shell: bash
         run: |
-          execute_process(
-            COMMAND git submodule update --init
-          )
-          execute_process(
-            COMMAND bash ./applyPatches.sh
-          )
+          git config --global user.email "runner@github.com"
+          git config --global user.name "runner"
+          git submodule update --init
+          bash ./applyPatches.sh
 
       - name: Download Qt
         id: qt
